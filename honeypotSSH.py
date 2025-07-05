@@ -1,12 +1,32 @@
-
 # LIBRARIES
 import logging
 from logging.handlers import RotatingFileHandler
 import time
 import paramiko
+from paramiko.auth_strategy import PrivateKey
+from paramiko.client import SSHClient
 
 # CONSTANTS
 LOGGING_FORMAT =  logging.Formatter('%(message)s')
+SSH_BANNER = """
+NOTICE: Unauthorized access to this system is strictly prohibited.
+All activity is monitored and recorded.
+
+internal-prod-db01.company.local \n\n
+"""
+STANDARD_BANNER = b"""
+Welcome to Ubuntu 20.04.6 LTS (GNU/Linux 5.15.0-97-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+\r\n\r\n
+"""
+
+#Change this to private server key!
+HOST_KEY_PATH = 'sever.key'
+HOST_KEY = paramiko.RSAKey.from_private_key_file(HOST_KEY_PATH)
+
 
 # LOGGING PREP
 funnelLogger = logging.getLogger('FunnelLogger')
@@ -105,4 +125,27 @@ class Server(paramiko.ServerInterface):
     def check_channel_exec_request(self, channel, command):
         command = str(command)
         return True
+
+# CLIENT HANDLER (create instance of server)
+def client_handle(client,addr,username,password):
+    #client ip in index 0
+    clientIP = addr[0];
+    print(f"{clientIP} has connected to the server")
+    # initialize new transport object
+    try:
+        transport = paramiko.Transport()
+        transport.local_version = SSH_BANNER
+        server = Server(client_ip=clientIP, input_username=username, input_password=password)
+        transport.add_server_key(HOST_KEY)
+        transport.start_server(server=server)
+        channel = transport.accept(100)
+        if channel is None:
+            print("No channel was opened!")
+        channel.send(STANDARD_BANNER)
+        emulatedShell(channel, client_ip= clientIP)
+    except:
+        pass
+    finally:
+        pass
+
 
