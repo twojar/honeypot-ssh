@@ -143,8 +143,9 @@ def client_handle(client,addr,username,password):
             print("No channel was opened!")
         channel.send(STANDARD_BANNER)
         emulatedShell(channel, client_ip= clientIP)
-    except:
-        pass
+    except Exception as error:
+        print(error)
+        print("ERROR")
     finally:
         pass
 
