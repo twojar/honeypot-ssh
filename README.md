@@ -2,7 +2,7 @@
 # SSH (Super Simple Honeypot)
 
 *Not to be confused with SSH (Secure Shell)*  
-**Contributors:** [@2jar](https://github.com/2jar) and [@Raforawesome](https://github.com/Raforawesome)
+**Contributors:** [@2jar](https://github.com/2jar)
 ```
   ______   __    __  _______   ________  _______                                 
  /      \ |  \  |  \|       \ |        \|       \                                
