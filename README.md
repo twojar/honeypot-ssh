@@ -45,7 +45,7 @@
 
 ## What is SSH (Super Simple Honeypot)?
 
-Couldn't decide on a name, so let’s call it SSH: **Super Simple Honeypot** — a Python-based, dual-protocol honeypot designed to emulate both SSH and HTTP attack surfaces.
+Couldn't decide on a name, so let’s call it SSH: **Super Simple Honeypot**: a Python-based, dual-protocol honeypot designed to emulate both SSH and HTTP attack surfaces.
 
 This project simulates a realistic Linux environment and fake login portal to log unauthorized access attempts, study attacker behavior, and visualize results in real time. Built for educational, research, or defensive security monitoring purposes. It is deployable on a VPS, light, modular (somewhat), and easy to extend and modify.
 
