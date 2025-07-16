@@ -66,7 +66,7 @@ This project simulates a realistic Linux environment and fake login portal to lo
 - Fake login form using `Flask`
 - Logs submitted credentials with IP and timestamp
 
-### Streamlit Dashboard
+### Dashboard
 - Visualizes:
   - Top IPs attempting login
   - Most executed commands
